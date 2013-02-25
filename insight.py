@@ -92,3 +92,17 @@ def view(model, params):
     yield Text(size=(12, 2),
                label="Usage",
                data={'text': 'Query "A B" means "A and B". Also OR and NOT operators are supported.'})
+    
+    
+@segment
+def segment(model, params):
+    print 'p', params
+    return []
+    #q = query(model, segment_sequence(params))
+    #return q
+    
+@segment_label
+def label(segment, params):
+    return 'fuubar'
+    #return 'Users who have gone through %s' %\
+    #        ', '.join(segment_sequence(params))

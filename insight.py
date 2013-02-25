@@ -104,6 +104,5 @@ def segment(model, params):
     
 @segment_label
 def label(segment, params):
-    tokens = tokeninputs(params, model)[params['value']['index']][0]
-    return 'Query: ' + ' & '.join(tokens)
+    return 'Query: ' + params['value']['label']
     

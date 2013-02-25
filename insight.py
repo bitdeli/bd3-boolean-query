@@ -97,7 +97,7 @@ def view(model, params):
 
 @segment
 def segment(model, params):
-    tokens = list(tokeninputs(params, model))[params['value']['index']]
+    tokens = list(tokeninputs(params, model))[int(params['value']['index'])]
     return model.query(parse_query(tokens))
     
 @segment_label

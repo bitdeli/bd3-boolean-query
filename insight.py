@@ -1,6 +1,7 @@
 from bitdeli.insight import insight
 from bitdeli.widgets import Bar, Widget, Text
 from discodb.query import Literal, Clause, Q
+from itertools import imap
 
 class TokenInput(Widget):
     pass
@@ -18,10 +19,10 @@ def parse_query(query):
 def format_query(tokens, model):
 
     def any_key():
-        return [key[2:] for key in model[' ']]
+        return [key[2:].decode('utf-8') for key in model[' ']]
 
     def is_property(token):
-        for key in model[' ']:
+        for key in imap(lambda x: x.decode('utf-8'), model[' ']):
             if key[0] == 'p' and key[2:] == token:
                 return True
         return False
@@ -29,7 +30,7 @@ def format_query(tokens, model):
     def property_values(token):
         token += ':'
         n = len(token)
-        for key in model:
+        for key in imap(lambda x: x.decode('utf-8'), model):
             if key.startswith(token):
                 yield key[n:]
         

@@ -3,6 +3,8 @@ from bitdeli.widgets import Bar, Widget, Text
 from discodb.query import Literal, Clause, Q
 from itertools import imap
 
+MAX_LABEL_LEN=32
+
 class TokenInput(Widget):
     pass
 
@@ -66,7 +68,10 @@ def tokeninputs(params, model):
 
 def chart_data(inputs, model):
     for tokens, values in inputs:
-        yield ' & '.join(tokens), len(model.query(parse_query(tokens)))
+        label = ' & '.join(tokens)
+        if len(label) > MAX_LABEL_LEN:
+            label = '...' + label[-MAX_LABEL_LEN:]
+        yield label, len(model.query(parse_query(tokens)))
             
 @insight
 def view(model, params):
@@ -75,7 +80,7 @@ def view(model, params):
              [format_query([], model)] 
     if len(inputs) > 1:
         yield Bar(id='bars',
-                  size=(12, 6),
+                  size=(max(4, min(12, 2 * len(inputs))), 4),
                   label='Results',
                   data=list(chart_data(inputs[:-1], model)))
     for i, (tokens, values) in enumerate(inputs):

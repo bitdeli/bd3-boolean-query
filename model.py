@@ -12,10 +12,10 @@ def items(profiles):
         for event in profile['events']:
             event = event.encode('utf-8')
             yield event, uid
-            keys.add(event)
+            keys.add('e:' + event)
         for prop_name, prop_values in profile['properties'].iteritems():
             prop_name = prop_name.encode('utf-8') 
-            keys.add(prop_name)
+            keys.add('p:' + prop_name)
             for prop_value in prop_values:
                 yield '%s:%s' % (prop_name, prop_value[:MAX_LEN].encode('utf-8')),\
                       uid

@@ -1,9 +1,10 @@
 from discodb import DiscoDB
-from bitdeli.model import model_discodb
+from bitdeli.model import model
 
 
 MAX_LEN = 64
 
+@model
 def items(profiles):
     for profile in profiles:
         uid = profile.uid
@@ -18,6 +19,3 @@ def items(profiles):
                 yield '%s:%s' % (prop_name, prop_value[:MAX_LEN].encode('utf-8')),\
                       uid
                 
-@model_discodb
-def build(profiles):
-    return DiscoDB(items(profiles), unique_items=True)

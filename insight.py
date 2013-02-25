@@ -97,14 +97,13 @@ def view(model, params):
 
 @segment
 def segment(model, params):
-    tokens = list(tokeninputs(params['params'], model))
-    print 'params', params
+    index = int(params['value']['index'])
+    tokens = list(tokeninputs(params['params'], model))[index][0]
     print 'tokens', tokens
-    tokens = tokens[int(params['value']['index'])]
     return model.query(parse_query(tokens))
     
 @segment_label
 def label(segment, params):
-    tokens = tokeninputs(params, model)[params['value']['index']]
+    tokens = tokeninputs(params, model)[params['value']['index']][0]
     return 'Query: ' + ' & '.join(tokens)
     

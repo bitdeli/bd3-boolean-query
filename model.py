@@ -16,8 +16,7 @@ def items(profiles):
         for prop_name, prop_values in profile['properties'].iteritems():
             prop_name = prop_name.encode('utf-8') 
             keys.add('p:' + prop_name)
-            for prop_value in prop_values:
-                yield '%s:%s' % (prop_name, prop_value[:MAX_LEN].encode('utf-8')),\
-                      uid
+            for v in frozenset(prop_value[:MAX_LEN] for prop_value in prop_values):
+                yield '%s:%s' % (prop_name, v.encode('utf-8')), uid
     for key in keys:
         yield ' ', key

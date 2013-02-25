@@ -14,7 +14,7 @@ def items(profiles):
             yield ' ', 'e:%s' % event
         for prop_name, prop_values in profile['properties'].iteritems():
             prop_name = prop_name.encode('utf-8') 
-            yield ' ', 'p:%s' % prop_name.encode('utf-8')
+            yield ' ', 'p:%s' % prop_name
             for prop_value in prop_values:
                 yield '%s:%s' % (prop_name, prop_value[:MAX_LEN].encode('utf-8')),\
                       uid

@@ -1,5 +1,5 @@
 from bitdeli.insight import insight
-from bitdeli.widgets import Bar, Widget
+from bitdeli.widgets import Bar, Widget, Text
 from discodb.query import Literal, Clause, Q
 
 class TokenInput(Widget):
@@ -83,4 +83,6 @@ def view(model, params):
                          label='Query %d' % (i + 1),
                          value=tokens,
                          data=values)
-    
+    yield Text(size=(12, 2),
+               label="Usage",
+               data={'text': 'Query "A B" means "A and B". Also OR and NOT operators are supported.'})

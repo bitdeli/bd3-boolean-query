@@ -97,7 +97,7 @@ def view(model, params):
 
 @segment
 def segment(model, params):
-    tokens = list(tokeninputs(params, model))
+    tokens = list(tokeninputs(params['params'], model))
     print 'params', params
     print 'tokens', tokens
     tokens = tokens[int(params['value']['index'])]

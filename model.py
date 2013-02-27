@@ -9,6 +9,8 @@ def items(profiles):
     keys = set()
     for profile in profiles:
         uid = profile.uid
+        if not uid:
+            continue
         for event in profile['events']:
             event = event.encode('utf-8')
             yield event, uid

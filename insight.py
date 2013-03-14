@@ -80,7 +80,7 @@ def view(model, params):
              [format_query([], model)] 
     if len(inputs) > 1:
         yield Bar(id='bars',
-                  size=(max(4, min(12, 2 * len(inputs))), 4),
+                  size=(max(4, min(12, 3 * len(inputs))), 4),
                   label='Results',
                   data=list(chart_data(inputs[:-1], model)))
     for i, (tokens, values) in enumerate(inputs):

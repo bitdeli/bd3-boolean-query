@@ -28,7 +28,7 @@ def format_query(tokens, model):
             if key[0] == 'p' and key[2:] == token:
                 return True
         return False
-        
+        committed from the Bitdeli editor
     def property_values(token):
         token += ':'
         n = len(token)
@@ -109,5 +109,5 @@ def segment(model, params):
     
 @segment_label
 def label(segment, model, params):
-    return 'Query: ' + params['value']['label']
+    return 'Users with ' + params['value']['label']
     

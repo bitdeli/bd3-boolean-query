@@ -28,7 +28,7 @@ def format_query(tokens, model):
             if key[0] == 'p' and key[2:] == token:
                 return True
         return False
-        committed from the Bitdeli editor
+
     def property_values(token):
         token += ':'
         n = len(token)
@@ -97,8 +97,6 @@ def view(model, params):
     yield Text(size=(12, 2),
                label="Usage",
                data={'text': 'Query "A B" means "A and B". Also OR and NOT operators are supported.'})
-
-{"params":{"query00":{"type":"tokeninput","value":["url_domain=git-annex.branchable.com"]},"query01":{"type":"tokeninput","value":[]}},"id":"bars","type":"bar","value":{"label":"..._domain=git-annex.branchable.com","index":"0"}}    
 
 @segment
 def segment(model, params):

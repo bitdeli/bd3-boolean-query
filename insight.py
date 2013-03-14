@@ -78,6 +78,11 @@ def view(model, params):
     inputs = [(tokens, values)
               for tokens, values in tokeninputs(params, model) if tokens] +\
              [format_query([], model)] 
+    
+    yield Text(size=(12, 'auto'),
+               label='Finding users with a specific characteristic',
+               data={'text': "## How many users have a property X vs. Y?\n"})
+    
     if len(inputs) > 1:
         yield Bar(id='bars',
                   size=(max(4, min(12, 3 * len(inputs))), 4),
@@ -103,6 +108,6 @@ def segment(model, params):
     return model.query(parse_query(tokens))
     
 @segment_label
-def label(segment, params):
+def label(segment, model, params):
     return 'Query: ' + params['value']['label']
     

@@ -16,8 +16,8 @@ def build(profiles):
             keys.add(e)
             fields.add(e)
             for prop_name, prop_value in event.iteritems():
-                p = 'p:%s' % prop_name.encode('utf-8')
-                keys.add(p)
+                p = prop_name.encode('utf-8')
+                keys.add('p:%s' % p)
                 fields.add('%s:%s' % (p, str(prop_value)[:MAX_LEN].encode('utf-8')))
         for field in fields:
             yield field, uid

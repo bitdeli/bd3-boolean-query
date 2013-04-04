@@ -23,5 +23,6 @@ user segment and used in combination with other insights.
 entering "referring\_domain=facebook.com" and
 "referring\_domain=t.co" (Twitter) as the queries (actual
 property names and values depend on your source data). Create
-segments from each user group and use the *Events Funnel* insight to
-see how the referrer affects their conversion rate.
+segments from each user group and use
+[Events Funnel](/explore/bitdeli/events-funnel)
+to see how the referrer affects their conversion rate.

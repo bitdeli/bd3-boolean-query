@@ -28,9 +28,9 @@ def build(profiles):
         for tstamp, group, ip, event in source_events:
             event_name = get_event_name(event)
             if event_name:
-                e = 'e:%s' % event_name.encode('utf-8')
-                keys.add(e)
-                fields.add(e)
+                event_name = event_name.encode('utf-8')
+                keys.add('e:' + event_name)
+                fields.add(event_name)
             real_name = event.pop('$event_name', None)
             if real_name == '$dom_event':
                 # Do not read properties from DOM events

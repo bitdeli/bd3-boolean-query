@@ -1,28 +1,18 @@
+from urlparse import urlparse
 from itertools import chain
 from discodb import DiscoDB
 from bitdeli.model import model
 
 MAX_LEN = 64
 
-# Customize to hide domain from page views
-# Example: "bitdeli.com"
-URL_DOMAIN = ""
-
 def get_event_name(event):
-    name = event.get('$event_name', None)
+    name = event.get('$event_name')
     if name == '$dom_event':
-        name = event.get('$event_label', None)
+        name = event.get('$event_label')
     elif name == '$pageview':
-        if not event.get('$page', ''):
-            return
-        url = event['$page']
-        splitter = URL_DOMAIN if URL_DOMAIN else 'http://'
-        if splitter in url:
-            url = url.split(splitter, 1)[1]
-        url = ('...' + url[-MAX_LEN:]) if len(url) > MAX_LEN else url
-        name = 'Page: %s' % url
+        name = 'viewed %s' % urlparse(event.get('$page', '')).path
     if name:
-        return name
+        return name[:MAX_LEN]
 
 @model
 def build(profiles):
